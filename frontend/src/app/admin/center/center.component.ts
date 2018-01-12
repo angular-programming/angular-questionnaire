@@ -59,7 +59,7 @@ export class CenterComponent implements OnInit {
   }
 
   onPublishQuestionnaire(){
-    this.questionnaireService.publishQuestionnaire(this.selectedQuestionnaire.id)
+    this.questionnaireService.updateQuestionnaireState(this.selectedQuestionnaire.id, QuestionnaireState.Published)
           .subscribe(
             questionnaire => {
               this.selectedQuestionnaire.state = QuestionnaireState.Published;

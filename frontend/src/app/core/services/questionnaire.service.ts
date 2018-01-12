@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { QuestionnaireModel } from '../../shared/models/questionnaire.model';
+import { QuestionnaireModel, QuestionnaireState } from '../../shared/models/questionnaire.model';
 import { SITE_HOST_URL } from '../../shared/index';
 
 @Injectable()
@@ -54,9 +54,9 @@ export class QuestionnaireService {
   }
 
   //发布问卷
-  publishQuestionnaire(id: string) {
+  updateQuestionnaireState(id: string, state: QuestionnaireState) {
     return this.http
-      .get(SITE_HOST_URL + 'questionnaire/publish/' + id)
+      .post(SITE_HOST_URL + 'questionnaire/updateState',{id:id, state:state})
       .map((res: any) => <QuestionnaireModel>res.data)
       .catch(this.handleError);
   }
